@@ -1,6 +1,6 @@
-# 🔐 SSH Refused to Trust Me — and It Was Right
+#  SSH Refused to Trust Me — and It Was Right
 
-## ❗️"WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!"
+## "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!"
 
 That’s the exact message I encountered when trying to SSH into my Ubuntu VM from PowerShell:
 
@@ -10,7 +10,7 @@ ssh user@IP
 
 Instantly, the connection was denied.
 
-## 🧠 What Actually Happened
+##  What Actually Happened
 
 When you connect to a remote host via SSH for the first time, your client stores the server’s **public key fingerprint** in your `~/.ssh/known_hosts` file. On subsequent connections, SSH uses that fingerprint to verify the server's identity.
 
@@ -37,7 +37,7 @@ This reflects the core principle of the **Zero Trust model**:
 
 > **Never trust. Always verify.**
 
-## 🔍 Why SSH Behaves This Way
+##  Why SSH Behaves This Way
 
 ### ✅ Normal Workflow
 
@@ -45,7 +45,7 @@ This reflects the core principle of the **Zero Trust model**:
 * You accept → it's saved to `known_hosts`
 * Future connections are checked against this fingerprint
 
-### ⚠️ When the Host Key Changes
+###  When the Host Key Changes
 
 * SSH detects mismatch
 * Assumes potential **Man-in-the-Middle** attack
@@ -59,7 +59,7 @@ This reflects the core principle of the **Zero Trust model**:
 
 This is **not an error** — it’s a **security feature**.
 
-## 🛠 How I Investigated & Resolved It
+##  How I Investigated & Resolved It
 
 1. Inspected `~/.ssh/known_hosts`:
 
@@ -81,7 +81,7 @@ ssh user@<IP>
 
 ✅ Now I was reconnected — but this time, securely.
 
-## 🔐 The Bigger Lesson: Zero Trust Isn’t Just for Enterprises
+##  The Bigger Lesson: Zero Trust Isn’t Just for Enterprises
 
 This wasn’t a breach.
 This wasn’t an attack.
@@ -103,7 +103,7 @@ But the system didn’t **care** — and it **shouldn’t**.
 * Forward logs to `Splunk`, `ELK`, or `Zeek`
 * Alert on unexpected key changes, connection attempts, or failed auth
 
-## 📂 Folder Structure (GitHub Repository)
+##  Folder Structure (GitHub Repository)
 
 ```
 
